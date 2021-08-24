@@ -96,7 +96,7 @@ def generate_images(
         for idx, w in enumerate(ws):
             img = G.synthesis(w.unsqueeze(0), noise_mode=noise_mode)
             img = (img.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
-            img = PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB').save(f'{outdir}/proj{idx:02d}.png')
+            img = PIL.Image.fromarray(img[0].cpu().numpy(), 'RGB').save(f'{outdir}/proj{idx:02d}.jpg')
         return
 
     if seeds is None:
@@ -120,7 +120,7 @@ def generate_images(
         img = (img.permute(0, 2, 3, 1) * 127.5 + 128).clamp(0, 255).to(torch.uint8)
         fimg = img[0].cpu().numpy() 
         #fimg = np.concatenate((fimg,)*3, axis=-1)
-        PIL.Image.fromarray(fimg, 'RGB').save(f'{outdir}/seed{seed:04d}.png')
+        PIL.Image.fromarray(fimg, 'RGB').save(f'{outdir}/seed{seed:04d}.jpg')
 
 
 #----------------------------------------------------------------------------
